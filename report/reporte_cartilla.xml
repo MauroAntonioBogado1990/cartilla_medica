@@ -19,9 +19,10 @@
                         
                     </div>
                     <!--agregamos el div de las regiones-->
-                   <div class="header2" style="background-color: #007BFF; color: white; text-align: left; padding: 10px; font-size: 18px; font-weight: bold;">
+                    <div class="header2" style="background-color: #007BFF; color: white; text-align: left; padding: 10px; font-size: 18px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
                         <t t-esc="doc.state_id.name" />
                     </div>
+
                     <div class="header3" style="background-color:rgb(43, 231, 184); color: white; text-align: left; padding: 10px; font-size: 26px; font-weight: bold; width: 50%;">
                         <p>Clinicas y Sanatorios</p>
                     </div>
