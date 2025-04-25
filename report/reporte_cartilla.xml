@@ -5,14 +5,15 @@
 <template id="reporte_cartilla_template">
     <t t-call="web.html_container">
    
-        <t t-foreach="docs" t-as="doc">
+        <!-- <t t-foreach="docs" t-as="doc"> -->
             <t t-call="web.basic_layout">
                 <div class="page">
                 <!--este es el header donde vamos a poner los logos que se enecuentran en los extremos-->
-                <!--actualmente no se por que no me imprime el logo de la compania, para poder ver eso-->
+                
                     <div class="header" style="position: relative; height: 100px;">
-                     <t t-if="doc.company_id or doc.company_id.logo">
-                    <img t-att-src="image_data_uri(doc.company_id.logo)" style="max-width: 460px; max-height: 120px; text-align:left;" alt="Logo"/>
+                     <t t-if="docs.company_id">
+                    
+                    <img t-att-src="image_data_uri(docs.company_id.logo)" style="max-width: 230px; max-height: 120px; text-align:left;" alt="Logo"/>
                     </t>
                     <t t-else="">
                         <p style="color: red;">No hay logo disponible</p>
@@ -20,32 +21,29 @@
 
                         
                     </div>
-                     <!--agregamos el div de las states pero pára poder adaptarlo deberá decir regiones-->
-                    <div class="header2" style="background-color: #007BFF; color: white; text-align: left; padding: 10px; font-size: 18px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
-                        <t t-esc="doc.state_id.name" />
+                    <!--agregamos el div de las states pero pára poder adaptarlo deberá decir regiones-->
+                   <div class="header2" style="background-color:rgb(10, 58, 109); color: white; text-align: left; padding: 10px; font-size: 26px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
+                        <t t-esc="docs.state_id.name" />
                     </div>
 
                     <div class="header3" style="background-color:rgb(43, 231, 184); color: white; text-align: left; padding: 10px; font-size: 26px; font-weight: bold; width: 50%;">
                         <p>Clinicas y Sanatorios</p>
                     </div>
-                   
+                    
 
 
                     <!-- Tabla de clinicas -->
                     
+                    <!-- <div style="position: absolute; margin-top: 250px; font-size: 10px; width: 100%;"> -->
                    
                      <!--se agregan las columnas y nombres de los contactos-->
-                     <!--aqui no puedo hacer todavía que se impriman por dos columnas , me imprime un contacto por hoja-->
-                    <div style="font-size: 10px; width: 100%; column-count: 2; column-gap: 20px;">
-                       
-                            
-                                <strong style="font-size: 12px;"><t t-esc="doc.name"/></strong><br/>
-                                <span style="font-size: 10px;"> <t t-esc="doc.phone or 'No disponible'"/></span><br/>
-                                <span style="font-size: 10px;"> <t t-esc="doc.street or 'No disponible'"/></span>
-                           
-                      
+                      <t t-foreach="docs" t-as="doc">
+                    <div style="font-size: 14px; width: 120%; column-count: 2; column-gap: 20px;">
+                        <strong style="font-size: 18px;"><t t-esc="doc.name"/></strong><br/>
+                        <span style="font-size: 16px;"> <t t-esc="doc.phone or 'No disponible'"/></span><br/>
+                        <span style="font-size: 16px;"> <t t-esc="doc.street or 'No disponible'"/></span>
                     </div>
-                    
+                    </t>
 
 
                     <div style="font-size: 10px; width: 100%;">
@@ -53,14 +51,14 @@
                     </div>
 
                     <!-- aqui poner logo tambien(Solo en la última página) -->
-                    <t t-if="page == topage">
+                    <!-- <t t-if="page == topage">
                      <div style="page-break-inside: avoid; margin-top: 20px; font-size: 12px;">
                      
                      
 
                      
                       </div>
-                    </t>
+                    </t> -->
 
                     <!-- Pie de Página se puede usar de ser necesario-->
                     <div class="footer" style="position: absolute;font-size: 10px; text-align: rigth; width: auto; left: 750px;">
@@ -74,7 +72,7 @@
                    
                 </div>
             </t>
-        </t>
+        <!-- </t> -->
     </t>
 </template>
 
