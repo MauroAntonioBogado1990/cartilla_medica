@@ -59,13 +59,18 @@
                      
                       </div>
                     </t> -->
-
-                    <!-- Pie de Página se puede usar de ser necesario-->
-                    <div class="footer" style="position: absolute;font-size: 10px; text-align: rigth; width: auto; left: 750px;">
-                        <!-- <p>Página <span class="page"/> de <span class="topage"/></p> -->
-                       
+                   <div class="footer" style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background-color: white; border-top: 1px solid #ccc;">
+                    <!-- Sección izquierda -->
+                    <div style="font-size: 14px; color: blue; font-weight: bold; text-align: left;">
+                        cristalsalud.ar
                     </div>
-  
+
+                    <!-- Sección derecha -->
+                    <div style="font-size: 12px; color: green; text-align: right;">
+                        • Prestador sólo Plan Esmeralda.
+                    </div>
+                </div>
+                
 
                         
 
