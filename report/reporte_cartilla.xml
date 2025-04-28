@@ -6,15 +6,19 @@
                 <t t-call="web.basic_layout">
                     <div class="page">
                         <!-- Header con logo -->
-                        <div class="header" style="position: relative; height: 100px;">
+                        <div class="header" style="display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 10px; background-color: white;">
+                            <!-- Logo principal a la izquierda -->
                             <t t-if="docs.company_id">
-                                <img t-att-src="image_data_uri(docs.company_id.logo)" style="max-width: 230px; max-height: 120px; text-align: left;" alt="Logo"/>
+                                <img t-att-src="image_data_uri(docs.company_id.logo)" style="max-width: 230px; max-height: 100%; margin-right: 10px;" alt="Logo izquierdo"/>
                             </t>
                             <t t-else="">
                                 <p style="color: red;">No hay logo disponible</p>
                             </t>
-                        </div>
 
+                            <!-- Logo adicional a la derecha -->
+                            <img src="reporte_cartilla,static/images/logo2.png" style="max-width: 230px; max-height: 100%; margin-left: 10px;" alt="Logo derecho"/>
+                            
+                        </div>
                         <!-- Div de regiones -->
                         <div class="header2" style="background-color:rgb(10, 58, 109); color: white; text-align: left; padding: 10px; font-size: 30px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
                             <t t-esc="docs[0].state_id.name" />
