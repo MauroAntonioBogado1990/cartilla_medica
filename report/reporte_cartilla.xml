@@ -1,4 +1,4 @@
-<<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
 
@@ -7,19 +7,35 @@
                 <t t-call="web.basic_layout">
                     <div class="page">
                         <!-- Header con logo -->
-                         <div class="header" style="display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 10px; background-color: white;">
-                            <!-- Logo principal a la izquierda -->
-                            <t t-if="docs.company_id">
-                                <img t-att-src="image_data_uri(docs.company_id.logo)" style="max-width: 230px; max-height: 100%; margin-right: 10px;" alt="Logo izquierdo"/>
-                            </t>
-                            <t t-else="">
-                                <p style="color: red;">No hay logo disponible</p>
-                            </t>
+                        <!--
+                       <div class="header" style="display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 10px; width: 100%; background-color: white;">
+                            
+                            <div style="display: flex; align-items: center; height: 100%;">
+                                <t t-if="docs.company_id">
+                                    <img t-att-src="image_data_uri(docs.company_id.logo)" style="max-height: 80px; max-width: 230px;" alt="Logo izquierdo"/>
+                                </t>
+                                <t t-else="">
+                                    <p style="color: red; margin: 0;">No hay logo disponible</p>
+                                </t>
+                            </div>
 
-                            <!-- Logo adicional a la derecha -->
-                            <img src="reporte_cartilla/static/images/logo2.png" style="max-width: 230px; max-height: 100%; margin-left: 10px;" alt="Logo derecho"/>
+                            
+                            <div style="display: flex; align-items: center; height: 100%;">
+                                <img src="reporte_cartilla/static/images/logo2.png" style="max-height: 80px; max-width: 230px;" alt="Logo derecho"/>
+                            </div>
                         </div>
-                        
+                        -->    
+      
+      
+      
+                        <div class="header" style="display: flex; align-items: center; justify-content: space-between; height: 100px; padding: 10px; width: 100%; background-color: white;">
+                            <!-- Aquí no se incluye el logo de la empresa, ya que se hereda automáticamente -->
+                            
+                            <!-- Logo adicional a la derecha -->
+                            <div style="display: flex; align-items: center; height: 100%; flex: 0 0 auto;">
+                                <img src="reporte_cartilla/static/images/logo2.png" style="max-height: 80px; max-width: 230px;" alt="Logo adicional"/>
+                            </div>
+                        </div>
                         <!-- Div de regiones -->
                         <div class="header2" style="background-color:rgb(221, 38, 38); color: white; text-align: left; padding: 10px; font-size: 30px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
                             <t t-esc="docs[0].state_id.name" />
