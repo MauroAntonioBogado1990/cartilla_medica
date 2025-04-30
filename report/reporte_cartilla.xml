@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
 
@@ -7,7 +7,7 @@
                 <t t-call="web.basic_layout">
                     <div class="page">
                         <!-- Header con logo -->
-                        <div class="header" style="display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 10px; background-color: white;">
+                         <div class="header" style="display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 10px; background-color: white;">
                             <!-- Logo principal a la izquierda -->
                             <t t-if="docs.company_id">
                                 <img t-att-src="image_data_uri(docs.company_id.logo)" style="max-width: 230px; max-height: 100%; margin-right: 10px;" alt="Logo izquierdo"/>
@@ -19,13 +19,14 @@
                             <!-- Logo adicional a la derecha -->
                             <img src="reporte_cartilla/static/images/logo2.png" style="max-width: 230px; max-height: 100%; margin-left: 10px;" alt="Logo derecho"/>
                         </div>
+                        
                         <!-- Div de regiones -->
-                        <div class="header2" style="background-color:rgb(10, 58, 109); color: white; text-align: left; padding: 10px; font-size: 30px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
+                        <div class="header2" style="background-color:rgb(221, 38, 38); color: white; text-align: left; padding: 10px; font-size: 30px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
                             <t t-esc="docs[0].state_id.name" />
                         </div>
 
                         <!-- Encabezado 'Clínicas y Sanatorios' -->
-                        <div class="header3" style="background-color:rgb(43, 231, 184); color: white; text-align: left; padding: 10px; font-size: 28px; font-weight: bold; width: 50%;">
+                        <div class="header3" style="background-color:rgb(165, 180, 177); color: black; text-align: left; padding: 10px; font-size: 28px; font-weight: bold; width: 50%;">
                             <p>Clínicas y Sanatorios</p>
                         </div>
 
@@ -66,7 +67,7 @@
                 </t>
             </t>
         </template>
- 
+
 
 
 
