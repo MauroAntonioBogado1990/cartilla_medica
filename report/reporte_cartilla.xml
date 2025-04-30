@@ -2,15 +2,17 @@
 <odoo>
     <data>
 
-        <template id="reporte_cartilla_template">
+        <template id="cartilla_impresa_report">
             <t t-call="web.html_container">
                 <t t-call="web.basic_layout">
+                <t t-set="prestadores" t-value="docs"/>
+
                     <div class="page">
-                        <!-- Header con logo -->
-                        <!--
-                       <div class="header" style="display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 10px; width: 100%; background-color: white;">
-                            
-                            <div style="display: flex; align-items: center; height: 100%;">
+                        <!-- Header con logo de la compañia -->
+                       
+                         <div class="header" style="position: relative; height: 100px; width: 100%; padding: 10px; background-color: white; box-sizing: border-box;">
+                            <!-- Logo izquierdo al extremo izquierdo -->
+                            <div style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
                                 <t t-if="docs.company_id">
                                     <img t-att-src="image_data_uri(docs.company_id.logo)" style="max-height: 80px; max-width: 230px;" alt="Logo izquierdo"/>
                                 </t>
@@ -19,26 +21,28 @@
                                 </t>
                             </div>
 
-                            
-                            <div style="display: flex; align-items: center; height: 100%;">
+                            <!-- Logo derecho al extremo derecho -->
+                            <div style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
                                 <img src="reporte_cartilla/static/images/logo2.png" style="max-height: 80px; max-width: 230px;" alt="Logo derecho"/>
                             </div>
                         </div>
-                        -->    
-      
-      
-      
-                        <div class="header" style="display: flex; align-items: center; justify-content: space-between; height: 100px; padding: 10px; width: 100%; background-color: white;">
-                            <!-- Aquí no se incluye el logo de la empresa, ya que se hereda automáticamente -->
+                        
+                        <!--header que se adapta dado que el reporte original ya trae el reporte-->
+                        <!--
+                         <div class="header" style="display: flex; align-items: center; justify-content: space-between; height: 100px; padding: 10px; width: 100%; background-color: white;">
+                           
                             
-                            <!-- Logo adicional a la derecha -->
+                           
                             <div style="display: flex; align-items: center; height: 100%; flex: 0 0 auto;">
                                 <img src="reporte_cartilla/static/images/logo2.png" style="max-height: 80px; max-width: 230px;" alt="Logo adicional"/>
                             </div>
                         </div>
+                        -->
+                        
                         <!-- Div de regiones -->
                         <div class="header2" style="background-color:rgb(221, 38, 38); color: white; text-align: left; padding: 10px; font-size: 30px; font-weight: bold; border-radius: 10px; margin-bottom: 15px;">
-                            <t t-esc="docs[0].state_id.name" />
+                            <!--<t t-esc="docs[0].state_id.name" />-->
+                            <t t-esc="region" />
                         </div>
 
                         <!-- Encabezado 'Clínicas y Sanatorios' -->
@@ -48,26 +52,47 @@
 
                         <!-- Contenedor único para las columnas -->
                         <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-                            <tr>
-                                <td style="width: 50%; vertical-align: top; padding: 10px;">
-                                    <t t-foreach="docs[0::2]" t-as="doc">
-                                        <div style="margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">
-                                            <strong style="font-size: 18px;"><t t-esc="doc.name"/></strong><br/>
-                                            <span style="font-size: 16px;"> <t t-esc="doc.phone or 'No disponible'"/></span><br/>
-                                            <span style="font-size: 16px;"> <t t-esc="doc.street or 'No disponible'"/></span>
-                                        </div>
-                                    </t>
-                                </td>
-                                <td style="width: 50%; vertical-align: top; padding: 10px;">
-                                    <t t-foreach="docs[1::2]" t-as="doc">
-                                        <div style="margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">
-                                            <strong style="font-size: 18px;"><t t-esc="doc.name"/></strong><br/>
-                                            <span style="font-size: 16px;"> <t t-esc="doc.phone or 'No disponible'"/></span><br/>
-                                            <span style="font-size: 16px;"> <t t-esc="doc.street or 'No disponible'"/></span>
-                                        </div>
-                                    </t>
-                                </td>
-                            </tr>
+                        <tr>
+                            <!-- Columna izquierda -->
+                            <td style="width: 50%; vertical-align: top; padding: 10px;">
+                                <t t-foreach="prestadores[region][0::2]" t-as="prestador">
+                                    <div style="margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+                                        <strong style="font-size: 18px;">
+                                            <t t-esc="prestador['name']"/>
+                                        </strong><br/>
+                                        <span style="font-size: 16px;">
+                                            <t t-esc="prestador['phone'] or 'No disponible'"/>
+                                        </span><br/>
+                                        <span style="font-size: 16px;">
+                                            <t t-esc="prestador['street'] or 'No disponible'"/> 
+                                            <t t-if="prestador['city']">
+                                                (<t t-esc="prestador['city']"/>)
+                                            </t>
+                                        </span>
+                                    </div>
+                                </t>
+                            </td>
+
+                            <!-- Columna derecha -->
+                            <td style="width: 50%; vertical-align: top; padding: 10px;">
+                                <t t-foreach="prestadores[region][1::2]" t-as="prestador">
+                                    <div style="margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+                                        <strong style="font-size: 18px;">
+                                            <t t-esc="prestador['name']"/>
+                                        </strong><br/>
+                                        <span style="font-size: 16px;">
+                                            <t t-esc="prestador['phone'] or 'No disponible'"/>
+                                        </span><br/>
+                                        <span style="font-size: 16px;">
+                                            <t t-esc="prestador['street'] or 'No disponible'"/>
+                                            <t t-if="prestador['city']">
+                                                (<t t-esc="prestador['city']"/>)
+                                            </t>
+                                        </span>
+                                    </div>
+                                </t>
+                            </td>
+                        </tr>
                         </table>
 
                         <!-- Footer -->
